@@ -15,5 +15,8 @@ This simple tool can help to put you in contact with people you might want to be
 
 I'm going to try to make this entire app in like 12 hours. I'm going to keep track of the progress I make because it will be interesting to see if I can do it. I've never done anything with Node, Coffeescript, OR Websockets before. Let's see how quickly I can pick it up!
 
-5/2 14:43 : Just installed Node and NPM through the DMG from nodejs.org.
+**5/2 14:43** Just installed Node and NPM through the DMG from nodejs.org.
+
+**5/2 14:50** Changed the progress log formatting, added a gitignore. I've decided to check in every half hour or so and write a little overview of what I've done. My commit messages should serve as a finer-grained log.
+
 
