@@ -3,12 +3,12 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes');
+var express = require('express');
 
 var app = module.exports = express.createServer();
 
 // Configuration
+// > NODE_ENV=foo node app.js to run with config 'foo'
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -20,6 +20,7 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
+  app.use(express.logger({format: ':method :url'}));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
@@ -29,8 +30,11 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', routes.index);
+app.get('/', function(req, res){
+  // GET index
+  res.render('index', { title: 'Express' });
+});
 
-app.listen(3000, function(){
+app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

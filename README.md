@@ -25,3 +25,4 @@ I'm going to try to make this entire app in like 12 hours. I'm going to keep tra
 
 **5/2 16:11** It's not just me, [NPM is down](https://github.com/isaacs/npm/issues/2409). Good to see that I'm not just *really* bad at node.js. It really stinks that this happened right as I started trying to do a code sprint. I'll try again tomorrow.
 
+**5/2/ 17:34** Finally got express installed. I took a long break and then came back after the NPM people fixed the server.
