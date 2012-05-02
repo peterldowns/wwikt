@@ -19,4 +19,5 @@ I'm going to try to make this entire app in like 12 hours. I'm going to keep tra
 
 **5/2 14:50** Changed the progress log formatting, added a gitignore. I've decided to check in every half hour or so and write a little overview of what I've done. My commit messages should serve as a finer-grained log.
 
+**5/2 15:03** Just got a dotcloud instance running with a super basic "Hello World" app. I still don't really know anything about node but I get the basic callback structure (I think. Probably not.)
 
