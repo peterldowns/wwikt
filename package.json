@@ -1,6 +1,20 @@
 {
-	"name" : "wwikt",
-	"version" : "0.1.0",
-	"dependencies" : {
-	}
+  "name": "wwikt",
+  "version": "0.1.0",
+  "dependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "author": "Peter Downs <peterldowns@gmail.com> (http://peterdowns.com)",
+  "description": "Who Will I Know There? A web service for finding friends in new places.",
+  "homepage": "https://github.com/peterldowns/wwikt",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/peterldowns/wwikt.git"
+  }
 }
