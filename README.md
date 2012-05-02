@@ -23,3 +23,5 @@ I'm going to try to make this entire app in like 12 hours. I'm going to keep tra
 
 **5/2 15:57** Wow, NPM sort of blows. Dependency hell just an hour into the project. I'd think it's my fault but search.npmjs.org is down and I can't install anything. Also, devDependencies weren't being installed, and I wasn't sure why. I `npm config set dev true` and tried it again, but the server (which had been up) went down sometime before that. So, I have no dependencies, nor can I install them. I really wanted to get started with express.js, but I can't :(
 
+**5/2 16:11** It's not just me, [NPM is down](https://github.com/isaacs/npm/issues/2409). Good to see that I'm not just *really* bad at node.js. It really stinks that this happened right as I started trying to do a code sprint. I'll try again tomorrow.
+
