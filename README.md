@@ -28,3 +28,5 @@ I'm going to try to make this entire app in like 12 hours. I'm going to keep tra
 **5/2 17:34** Finally got express installed. I took a long break and then came back after the NPM people fixed the server.
 
 **5/2 18:51** Took a long break for dinner. Decided to put up the express demo app on dotcloud and get it all working and then seriously work on this tomorrow. Should be fun! I'm excited about building something cool again. This is definitely different than Python, which I'm pretty comfortable with, but I like this. Some of the Jade templating syntax still seems strange to me. I'm also still not onfident I understand what's going on with all of the `app.use()` code.
+
+**5/2 19:03** Got everything working on dotcloud. Tomorrow I'll try to actually build an app. I feel a little bit like I'm writing Python with different syntax right now — hopefully that changes tomorrow! I think I'm just going to use Bootstrap for the layout and make it super, super simple. Might actually rip the design I have on sexpert right now and shove it up. That's a pretty essential search layout.
