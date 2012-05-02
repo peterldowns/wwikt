@@ -21,3 +21,5 @@ I'm going to try to make this entire app in like 12 hours. I'm going to keep tra
 
 **5/2 15:03** Just got a dotcloud instance running with a super basic "Hello World" app. I still don't really know anything about node but I get the basic callback structure (I think. Probably not.)
 
+**5/2 15:57** Wow, NPM sort of blows. Dependency hell just an hour into the project. I'd think it's my fault but search.npmjs.org is down and I can't install anything. Also, devDependencies weren't being installed, and I wasn't sure why. I `npm config set dev true` and tried it again, but the server (which had been up) went down sometime before that. So, I have no dependencies, nor can I install them. I really wanted to get started with express.js, but I can't :(
+
