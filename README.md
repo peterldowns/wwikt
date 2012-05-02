@@ -25,4 +25,6 @@ I'm going to try to make this entire app in like 12 hours. I'm going to keep tra
 
 **5/2 16:11** It's not just me, [NPM is down](https://github.com/isaacs/npm/issues/2409). Good to see that I'm not just *really* bad at node.js. It really stinks that this happened right as I started trying to do a code sprint. I'll try again tomorrow.
 
-**5/2/ 17:34** Finally got express installed. I took a long break and then came back after the NPM people fixed the server.
+**5/2 17:34** Finally got express installed. I took a long break and then came back after the NPM people fixed the server.
+
+**5/2 18:51** Took a long break for dinner. Decided to put up the express demo app on dotcloud and get it all working and then seriously work on this tomorrow. Should be fun! I'm excited about building something cool again. This is definitely different than Python, which I'm pretty comfortable with, but I like this. Some of the Jade templating syntax still seems strange to me. I'm also still not onfident I understand what's going on with all of the `app.use()` code.
