@@ -2,18 +2,23 @@
  * Module dependencies.
  */
 var express = require('express'),
+    request = require('request'),
     conf = require('./conf');
 var app = module.exports = express.createServer();
 
 // Configuration
 // > NODE_ENV=foo node app.js to run with config 'foo'
+app.set('_title', 'WWIKT — Who Will I Know There?');
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
+  app.use(express.cookieParser());
   app.use(express.static(__dirname + '/public'));
   app.use(express.methodOverride());
+  app.use(express.session({secret: conf.secret}));
+  app.use(express.csrf());
   app.use(app.router);
 });
 
@@ -32,10 +37,24 @@ app.get('/', function(req, res){
   // GET index
   console.log(conf.perms.join(','));
   res.render('index', {
-    title: 'WWIKT — Who Will I Know There?',
-    appId: conf.appId,
-    scope: conf.perms.join(',')
+    title: app.set('_title')
   });
+});
+
+app.get('/login', function(req, res){
+  var url = 'https://www.facebook.com/dialog/oauth?'+
+            'client_id='+ conf.appId +
+            '&redirect_uri=' + 'http://wwikt-peterldowns.dotcloud.com/red'+
+            //'&redirect_uri=' + 'http://localhost:8080' +
+            '&scope=' + conf.perms.join(',') +
+            '&state=' + req.session._csrf;
+  console.log("Redirect URL = "+url);
+  res.redirect(url);
+});
+
+app.get('/red', function(req, res){
+  console.log("params = ");
+  console.log(req.params);
 });
 
 app.listen(8080, function(){
