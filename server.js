@@ -65,7 +65,7 @@ app.get('/redirect', function(req, res){
   
   request.post({url:url}, function(e, r, body){
     console.log(body);
-    if (!error && response.statusCode == 200) {
+    if (!e && r.statusCode == 200) {
       var data = qs.parse(body);
       console.log(data);
       req.session.access_token = data.access_token;
