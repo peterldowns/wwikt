@@ -10,10 +10,11 @@
       button.btn.btn-primary(type='submit')
         Find Friends
     br
-- if (typeof session.access_token === "undefined")
+- if (!access_token)
   script
     console.log("not logged in.");
 - else
   script
     console.log("logged in.");
-    console.log(#{session.access_token});
+    console.log(#{access_token});
+    console.log(#{place});

@@ -37,7 +37,9 @@ app.configure('production', function(){
 app.get('/', function(req, res){
   // GET index
   res.render('index', {
-    title: app.set('_title')
+    title: app.set('_title'),
+    access_token: req.session.access_token || null,
+    place: req.session.place || null
   });
 });
 
@@ -81,8 +83,8 @@ app.get('/redirect', function(req, res){
 app.get('/search', function(req, res){
   res.render('index', {
     title: app.set('_title') + '— Results',
-    access_token: req.session.access_token,
-    place: req.session.place
+    access_token: req.session.access_token || null,
+    place: req.session.place || null
   });
 });
 
