@@ -1,7 +1,8 @@
 /**
  * Module dependencies.
  */
-var express = require('express');
+var express = require('express'),
+    conf = require('./conf');
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -29,9 +30,17 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   // GET index
-  res.render('index', { title: 'WWIKT — Who Will I Know There?' });
+  console.log(conf.perms.join(','));
+  res.render('index', {
+    title: 'WWIKT — Who Will I Know There?',
+    appId: conf.appId,
+    scope: conf.perms.join(',')
+  });
 });
 
 app.listen(8080, function(){
+  console.log("Loaded with configuration:");
+  console.log(conf);
+  console.log("---------");
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

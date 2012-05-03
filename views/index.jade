@@ -1,3 +1,4 @@
+#fb-root
 .container
   .searchMain
     h1= title
@@ -5,9 +6,27 @@
     form.well.form-inline
       label
         h4(style='margin-right: 10px;')
-          | I'm looing for friends near
+          | I'm looking for friends near
       input.input-xlarge.search-query(placeholder='San Francisco')
-      button.btn.btn-primary
-        | →
+      script
+        window.fbAsyncInit = function(){
+          FB.init({
+            appId : '#{appId}',
+            status : true,
+            cookie : true,
+            xfbml : true,
+            oauth : true,
+          });
+        };
+        (function(d){
+          var js, id = 'facebook-jssdk'; if (d.getElementById(id)){return;}
+          js = d.createElement('script'); js.id = id; js.async = true;
+          js.src = "//connect.facebook.net/en_US/all.js";
+          d.getElementsByTagName('head')[0].appendChild(js);
+        }(document));
+      //button.btn.btn-primary
+      .btn.fb-login-button(scope=scope)
+        | Find Friends
     br
     #searchresult
+
