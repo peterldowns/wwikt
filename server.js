@@ -55,6 +55,7 @@ app.get('/login', function(req, res){
 app.get('/red', function(req, res){
   console.log("params = ");
   console.log(req.params);
+  res.write(req.params);
 });
 
 app.listen(8080, function(){
