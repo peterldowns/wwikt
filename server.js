@@ -33,22 +33,20 @@ app.configure('production', function(){
 });
 
 // Routes
-app.get('/test', function(req, res){
-  console.log(req.query);
-  res.send(req.query);
-});
+
 app.get('/', function(req, res){
   // GET index
-  console.log(conf.perms.join(','));
   res.render('index', {
     title: app.set('_title')
   });
 });
 
 app.get('/login', function(req, res){
+  console.log(req.query);
+  req.session.place = req.query.place;
   var url = 'https://www.facebook.com/dialog/oauth?'+
             'client_id='+ conf.appId +
-            '&redirect_uri=' + 'http://wwikt-peterldowns.dotcloud.com/red'+
+            '&redirect_uri=' + 'http://wwikt-peterldowns.dotcloud.com/redirect'+
             //'&redirect_uri=' + 'http://localhost:8080' +
             '&scope=' + conf.perms.join(',') +
             '&state=' + req.session._csrf;
@@ -56,25 +54,42 @@ app.get('/login', function(req, res){
   res.redirect(url);
 });
 
-app.get('/red', function(req, res){
+app.get('/redirect', function(req, res){
   //var params = req.query;
   //var session= req.session;
   var url = 'https://graph.facebook.com/oauth/access_token' +
             '?client_id=' + conf.appId + 
-            '&redirect_uri=' + 'http://wwikt-peterldowns.dotcloud.com/red' +
+            '&redirect_uri=' + 'http://wwikt-peterldowns.dotcloud.com/redirect' +
             '&client_secret=' + conf.appSecret +
             '&code=' + req.query.code;
-  var oauth = {
-        client_id: conf.appId,
-        client_secret: conf.appSecret,
-        code: req.query.code
-      };
+  
   request.post({url:url}, function(e, r, body){
     console.log(body);
-    var data = qs.parse(body);
-    console.log(data);
+    if (!error && response.statusCode == 200) {
+      var data = qs.parse(body);
+      console.log(data);
+      req.session.access_token = data.access_token;
+      req.session.expires = data.expires
+      res.redirect('/search');
+    }
+    else {
+      res.redirect('/error');
+    }
   });
-  res.redirect('/find');
+});
+
+app.get('/search', function(req, res){
+  res.render('search', {
+    title: app.set('_title') + '— Results',
+    access_token: req.session.access_token,
+    place: req.session.place
+  });
+});
+
+app.get('/error', function(req, res){
+  res.render('error', {
+    title: app.set('_title') + '— Error'
+  });
 });
 
 app.listen(8080, function(){
