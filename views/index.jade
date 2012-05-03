@@ -10,13 +10,32 @@
       button.btn.btn-primary(type='submit')
         | Find Friends ⇨
     br
-- if (!access_token)
-  script
-    console.log("not logged in.");
-- else
-  script
-    var access_token = "#{access_token}";
-    var place = "#{place}";
-    console.log("logged in.");
-    console.log(access_token);
-    console.log(place);
+    - if (!access_token)
+      script
+        console.log("not logged in.");
+    - else
+      li#people
+      script
+        var access_token = "#{access_token}";
+        var place = "#{place}";
+        $('document').ready(function(){
+          $('#place').text(place);
+        /*
+          var nearby_friends = [];
+          var me = get(https://graph.facebook.com/me?access_token=access_token)['data']
+          var id = me.id
+          for friend in https://graph.facebook.com/id/friends?access_token=access_token)['data']:
+            var id = friend.id
+            var name = friend.name
+            var data = get(https://graph.facebook.com/friend_id/locations?access_token=access_token)['data']
+            for thing in data:
+              if thing.place is near place:
+                nearby_friends.push(friend)
+                break // start with a new friend, this one matches
+          for friend in nearby_friends:
+            dom.append(build_list(friend))
+        */ 
+                
+        console.log("logged in.");
+        console.log(access_token);
+        console.log(place);
