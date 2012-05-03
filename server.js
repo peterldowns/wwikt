@@ -32,7 +32,10 @@ app.configure('production', function(){
 });
 
 // Routes
-
+app.get('/test', function(req, res){
+  console.log(req.query);
+  res.send(req.query);
+});
 app.get('/', function(req, res){
   // GET index
   console.log(conf.perms.join(','));
@@ -53,11 +56,23 @@ app.get('/login', function(req, res){
 });
 
 app.get('/red', function(req, res){
-  console.log("params = ");
-  console.log(req.params);
-  console.log("body = ");
-  console.log(req.body);
-  res.redirect('/');
+  //var params = req.query;
+  //var session= req.session;
+  var url = 'https://graph.facebook.com/oauth/access_token?'+
+            'client_id=' + conf.appId +
+            '&redirect_uri=' + 'http://wwikt-peterldowns.dotcloud.com/find' +
+            '&client_secret=' + conf.appSecret +
+            '&code=' + req.query.code;
+  console.log("Would try to make a request to "+url);
+  request({
+    method: 'GET',
+    uri: url
+  }, function(error, response, body){
+    console.log(body);
+    res.send(body);
+  });
+  res.send('error');
+  //res.redirect('/');
 });
 
 app.listen(8080, function(){
