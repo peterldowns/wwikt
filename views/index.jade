@@ -1,2 +1,13 @@
-h1= title
-p Welcome to #{title}
+.container
+  .searchMain
+    h1= title
+    br
+    form.well.form-inline
+      label
+        h4(style='margin-right: 10px;')
+          | I'm looing for friends near
+      input.input-xlarge.search-query(placeholder='San Francisco')
+      button.btn.btn-primary
+        | →
+    br
+    #searchresult

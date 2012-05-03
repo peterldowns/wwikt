@@ -1,6 +1,38 @@
 !!!
 html
   head
+    // Meta
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='Find Friends in New Places')
+    meta(name='author', content='Peter Downs')
+    
+    // CSS
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/bootstrap-responsive.css')
+    style(type='text/css')
+      html { 
+        background: url(/img/map.png) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      body {
+        background: transparent;
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .searchMain {
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -o-border-radius: 5px;
+        background: rgba(255, 255, 255, .8);
+        text-align: center;
+      }
+
+    // JS
+    script(src='/js/jquery.js')
+    script(src='/js/bootstrap.js')
+
   body!= body

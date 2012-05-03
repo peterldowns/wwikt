@@ -32,7 +32,7 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   // GET index
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'WWIKT — Who Will I Know There?' });
 });
 
 app.listen(8080, function(){
