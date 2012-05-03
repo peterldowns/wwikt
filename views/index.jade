@@ -1,6 +1,6 @@
 .container
   .searchMain
-    h1= title
+    h1 Who Will I Know There?
     br
     form.well.form-inline(name='search', action='/login')
       label
@@ -8,13 +8,15 @@
           | I'm looking for friends near
       input.input-xlarge.search-query(name='place', placeholder='San Francisco')
       button.btn.btn-primary(type='submit')
-        Find Friends
+        | Find Friends ⇨
     br
 - if (!access_token)
   script
     console.log("not logged in.");
 - else
   script
+    var access_token = "#{access_token}";
+    var place = "#{place}";
     console.log("logged in.");
-    console.log(#{access_token});
-    console.log(#{place});
+    console.log(access_token);
+    console.log(place);
