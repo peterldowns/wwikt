@@ -59,15 +59,17 @@ app.get('/login', function(req, res){
 app.get('/red', function(req, res){
   //var params = req.query;
   //var session= req.session;
-  var base_url = 'https://graph.facebook.com/oauth/access_token';
+  var url = 'https://graph.facebook.com/oauth/access_token' +
+            '?client_id=' + conf.appId + 
+            '&redirect_uri=' + 'http://wwikt-peterldowns.dotcloud.com/find' +
+            '&client_secret=' + conf.appSecret +
+            '&code=' + req.query.code;
   var oauth = {
         client_id: conf.appId,
-        redirect_uri: 'http://wwikt-peterldowns.dotcloud.com/find',
         client_secret: conf.appSecret,
         code: req.query.code
       };
-  console.log(oauth);
-  request.post({url:base_url, oauth:oauth}, function(e, r, body){
+  request.get({url:url}, function(e, r, body){
     console.log(body);
     var data = qs.parse(body);
     res.send(data);
