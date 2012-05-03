@@ -1,4 +1,3 @@
-#fb-root
 .container
   .searchMain
     h1= title
@@ -11,5 +10,10 @@
       button.btn.btn-primary(type='submit')
         Find Friends
     br
-    #searchresult
-
+- if (typeof session.access_token === "undefined")
+  script
+    console.log("not logged in.");
+- else
+  script
+    console.log("logged in.");
+    console.log(#{session.access_token});

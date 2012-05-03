@@ -79,7 +79,7 @@ app.get('/redirect', function(req, res){
 });
 
 app.get('/search', function(req, res){
-  res.render('search', {
+  res.render('index', {
     title: app.set('_title') + '— Results',
     access_token: req.session.access_token,
     place: req.session.place
