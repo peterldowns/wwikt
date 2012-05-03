@@ -3,6 +3,7 @@
  */
 var express = require('express'),
     request = require('request'),
+    qs = require('querystring'),
     conf = require('./conf');
 var app = module.exports = express.createServer();
 
@@ -58,21 +59,19 @@ app.get('/login', function(req, res){
 app.get('/red', function(req, res){
   //var params = req.query;
   //var session= req.session;
-  var url = 'https://graph.facebook.com/oauth/access_token?'+
-            'client_id=' + conf.appId +
-            '&redirect_uri=' + 'http://wwikt-peterldowns.dotcloud.com/find' +
-            '&client_secret=' + conf.appSecret +
-            '&code=' + req.query.code;
-  console.log("Would try to make a request to "+url);
-  request({
-    method: 'GET',
-    uri: url
-  }, function(error, response, body){
+  var base_url = 'https://graph.facebook.com/oauth/access_token';
+  var oauth = {
+        client_id: conf.appId,
+        redirect_uri: 'http://wwikt-peterldowns.dotcloud.com/find',
+        client_secret: conf.appSecret,
+        code: req.query.code
+      };
+  console.log(oauth);
+  request.post({url:base_url, oauth:oauth}, function(e, r, body){
     console.log(body);
-    res.send(body);
+    var data = qs.parse(body);
+    res.send(data);
   });
-  res.send('error');
-  //res.redirect('/');
 });
 
 app.listen(8080, function(){
