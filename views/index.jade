@@ -37,10 +37,11 @@
           var makePerson = function(friend){
             console.log(friend);
             var id = friend.username || friend.id;
+            console.log("id = %s", id);
             var res = '<li>' +
                         '<a href="https://facebook.com/'+id+'">' +
                           '<div class="person">' +
-                            '<img src="/fb//'+id+'/picture?type=normal" />' +
+                            '<img crossOrigin="Anonymous" src="https://graph.facebook.com/'+id+'/picture?type=normal"/>' +
                             '<h3>' + friend.name + '</h3>' +
                           '</div>' +
                         '</a>' +
