@@ -44,6 +44,7 @@ app.get('/', function(req, res){
     access_token: req.session.access_token || null,
     place: req.session.place || null
   });
+  res.redirect('/');
 });
 
 app.get('/login', function(req, res){

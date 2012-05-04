@@ -4,14 +4,18 @@
     h1 Who Will I Know There?
     br
     - if(!access_token)
-    form.form-search.form-vertical(id='search', name='search', action='/login')
+      form.form-search.form-vertical(id='search', name='search', action='/login')
     - else
-    form.form-search.form-vertical(id='search', name='search', action='/')
+      form.form-search.form-vertical(id='search', name='search', action='/')
+    - if(1)
       label
         h4 I'm moving to
       input.input-xxlarge.search-query(id='place', name='place', placeholder='"San Francisco" or "California" or "San Francisco, California"')
       button.btn.btn-primary(type='submit')
         | Find Friends!
+    -else
+    
+    br
     p(class='loading') Searching your facebook graph...
     img(class='loading', src="/img/loading.gif", alt="Loading friends (may take a while)")
     p(class='done_loading') Done.
