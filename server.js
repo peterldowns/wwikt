@@ -88,7 +88,7 @@ app.get('/error', function(req, res){
 });
 
 app.get('/fb/*', function(req, res){
-  var graph_url = 'https://graph.facebook.com/';
+  var graph_url = 'https://graph.facebook.com';
   var url = graph_url + req.params[0] + '?access_token=' + req.session.access_token;
   console.log(url);
   request.get({url:url}, function(e, r, body){
