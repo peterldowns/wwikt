@@ -55,11 +55,11 @@
                   console.log(data);
                   if(data.hometown.name && contains(data.hometown.name, place)){
                     nearby_friends.push(friend);
-                    break;
+                    continue;
                   }
                   if(data.location.name && contains(data.location.name, place)){
                     nearby_friends.push(friend);
-                    break;
+                    continue;
                   }
                 });
               });
