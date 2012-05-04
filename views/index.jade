@@ -35,13 +35,12 @@
           }
 
           var makePerson = function(friend){
-            var name = friend.name;
-            var id = friend.id;
+            console.log(friend);
             var res = '<li>' +
-                        '<a href="https://facebook.com/'+id+'">' +
+                        '<a href="https://facebook.com/'+friend.id+'">' +
                           '<div class="person">' +
-                            '<img src="https://facebook.com/'+id+'/picture" />' +
-                            '<h3>' + name + '</h3>' +
+                            '<img src="https://facebook.com/'+friend.username+'/picture" />' +
+                            '<h3>' + friend.name + '</h3>' +
                           '</div>' +
                         '</a>' +
                       '</li>';
@@ -63,19 +62,19 @@
               _.each(friends, function(friend, i, l){
                 var id = friend.id;
                 var name = friend.name;
-                FB('/'+id, function(data){
+                FB('/'+id, function(friend_info){
                   var nearby = false;
-                  if(data.hometown && data.homewotn.name &&
-                     isNearby(data.hometown.name, place)){
+                  if(friend_info.hometown && friend_info.hometown.name &&
+                     isNearby(friend_info.hometown.name, place)){
                     nearby = true;
                   }
-                  else if(data.location && data.location.name &&
-                          isNearby(data.location.name, place)){
+                  else if(friend_info.location && friend_info.location.name &&
+                          isNearby(friend_info.location.name, place)){
                     nearby = true;
                   }
                   if(nearby){
-                    console.log("%s is nearby", friend.name);
-                    people.append(makePerson(friend));
+                    console.log("%s is nearby", friend_info.name);
+                    people.append(makePerson(friend_info));
                   }
                 });
               });
