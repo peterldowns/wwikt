@@ -80,6 +80,9 @@
           var FB = function(path, cb){
             $.getJSON('/fb/'+path, cb);
           }
+          var addPersonTo = function(target, info){
+            $(target).append(makePerson(info));
+          }
 
           // Perform the search
           FB('/me', function(data){
@@ -93,10 +96,6 @@
                 var id = friend.id;
                 var name = friend.name;
                 FB('/'+id, function(friend_info){
-                  FB('/'+id+'/locations', function(loc_info){
-                    console.log("LOCATION INFO:");
-                    console.log(loc_info);
-                  });
                   var nearby = false;
                   if(friend_info.hometown && friend_info.hometown.name &&
                      isNearby(friend_info.hometown.name, place)){
@@ -107,8 +106,25 @@
                     nearby = true;
                   }
                   if(nearby){
-                    console.log("%s is nearby", friend_info.name);
-                    people.append(makePerson(friend_info));
+                    addPersonTo('ul#people', friend_info);
+                  }
+                  else{
+                    console.log("Trying to grab %s's location info", friend_info.name);
+                    FB('/'+id+'/locations', function(loc_info){
+                      console.log("LOCATION INFO:");
+                      console.log(loc_info);
+                      loc_info.data.some(function(event){
+                        friend_info.from = event.from;
+                        var place = event.place;
+                        var loc_string = [place.name, place.city, place.state, place.country].join(', ');
+                        console.log(loc_string);
+                        if(isNearby(friend_info.location.name, loc_string)){
+                          console.log('%s is nearby %s!', friend_info.location.name, loc_string);
+                          addPersonTo('ul#people', friend_info);
+                          return true;
+                        }
+                      });
+                    });
                   }
                 });
               });
