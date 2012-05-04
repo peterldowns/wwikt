@@ -17,77 +17,68 @@
     - else
       ul#people
       script
-        $(document).ready(function(){
-          var access_token = "#{access_token}";
-          var place = "#{place}";
-          var appId = "#{appId}";
-          
-          console.log("logged in.");
-          console.log(access_token);
-          console.log(place);
-          console.log(appId);
-          
-          $('#place').val(place); // update searched value
-          alert("hi");
+        var access_token = "#{access_token}";
+        var place = "#{place}";
+        var appId = "#{appId}";
+        console.log("logged in.");
+        console.log(access_token);
+        console.log(place);
+        console.log(appId);
 
-          var contains = function(a, b){
+        $(document).ready(function(){
+          $('#place').val(place); // update searched value
+         
+          // Helper functions
+          
+          var isNearby = function(a, b){
             return (a.toLowerCase().indexOf(b.toLowerCase()) !== -1);
           }
-          // Totally forgot about no Cross-Site Requests. Damnit.
-          // I'll have to write a little server thingy. Oh, then
-          // I won't need the appId or access_token, so I guess
-          // thats a little benefit? Not sure. Ill expose
-          // something on the server that makes these requests.
+
+          var makePerson = function(friend){
+            var name = friend.name;
+            var id = friend.id;
+            var res = '<li>' +
+                        '<a href="https://facebook.com/'+id+'">' +
+                          '<div class="person">' +
+                            '<img src="https://facebook.com/'+id+'/picture" />' +
+                            '<h3>' + name + '</h3>' +
+                          '</div>' +
+                        '</a>' +
+                      '</li>';
+            return res;
+          }
+          
           var FB = function(path, cb){
             $.getJSON('/fb/'+path, cb);
           }
+
+          // Perform the search
           FB('/me', function(data){
             var me = data;
             FB('/me/friends', function(data){
               var friends = data.data;
-              console.log("Friends");
-              console.log(friends);
+              console.log("Looking through "+friends.length+" friends");
               
               var people = $('ul#people');
-              alert("Looking through "+friends.length+" friends");
               _.each(friends, function(friend, i, l){
                 var id = friend.id;
-                console.log("Id, name");
                 var name = friend.name;
-                console.log(id);
-                console.log(name);
-                
                 FB('/'+id, function(data){
-                  console.log(data);
                   var nearby = false;
-                  if(data.hometown && contains(data.hometown.name, place)){
+                  if(data.hometown && data.homewotn.name &&
+                     isNearby(data.hometown.name, place)){
                     nearby = true;
                   }
-                  else if(data.location && contains(data.location.name, place)){
+                  else if(data.location && data.location.name &&
+                          isNearby(data.location.name, place)){
                     nearby = true;
                   }
                   if(nearby){
-                    console.log("%s is nearby!", friend.name);
-                    people.append('<li><a href="https://facebook.com/'+friend.id+'">'+friend.name+'</a></li>');
+                    console.log("%s is nearby", friend.name);
+                    people.append(makePerson(friend));
                   }
                 });
               });
             });
           });
         });
-
-        /*
-          var nearby_friends = [];
-          var me = get(https://graph.facebook.com/me?access_token=access_token)['data']
-          var id = me.id
-          for friend in https://graph.facebook.com/id/friends?access_token=access_token)['data']:
-            var id = friend.id
-            var name = friend.name
-            var data = get(https://graph.facebook.com/friend_id/locations?access_token=access_token)['data']
-            for thing in data:
-              if thing.place is near place:
-                nearby_friends.push(friend)
-                break // start with a new friend, this one matches
-          for friend in nearby_friends:
-            dom.append(build_list(friend))
-        */ 
