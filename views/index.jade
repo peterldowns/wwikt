@@ -59,6 +59,7 @@
           // Helper functions
           
           var isNearby = function(a, b){
+            console.log("Checking to see if '%s' is nearby '%s'", a, b);
             return (a.toLowerCase().indexOf(b.toLowerCase()) !== -1);
           }
 
@@ -117,8 +118,9 @@
                         friend_info.from = event.from;
                         var place = event.place;
                         var loc_string = [place.name, place.city, place.state, place.country].join(', ');
+                        loc_string = String(loc_string);
                         console.log(loc_string);
-                        if(isNearby(friend_info.location.name, loc_string)){
+                        if(isNearby(loc_string, place)){
                           console.log('%s is nearby %s!', friend_info.location.name, loc_string);
                           addPersonTo('ul#people', friend_info);
                           return true;
