@@ -116,8 +116,8 @@
                       console.log(loc_info);
                       loc_info.data.some(function(event){
                         friend_info.from = event.from;
-                        var place = event.place;
-                        var loc_string = [place.name, place.city, place.state, place.country].join(', ');
+                        var event_loc = event.place;
+                        var loc_string = [event_loc.name, event_loc.city, event_loc.state, event_loc.country].join(', ');
                         loc_string = String(loc_string);
                         console.log(loc_string);
                         if(isNearby(loc_string, place)){
