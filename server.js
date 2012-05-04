@@ -37,6 +37,7 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   // GET index
+  req.session.place = req.query.place;
   res.render('index', {
     title: app.set('_title') + '— Error',
     appId: conf.appId || null,

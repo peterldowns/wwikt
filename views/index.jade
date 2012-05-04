@@ -3,7 +3,10 @@
   .searchMain
     h1 Who Will I Know There?
     br
+    - if(!access_token)
     form.form-search.form-vertical(id='search', name='search', action='/login')
+    - else
+    form.form-search.form-vertical(id='search', name='search', action='/')
       label
         h4 I'm moving to
       input.input-xxlarge.search-query(id='place', name='place', placeholder='"San Francisco" or "California" or "San Francisco, California"')
