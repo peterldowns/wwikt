@@ -60,10 +60,10 @@
                 FB('/'+id, function(data){
                   console.log(data);
                   var nearby = false;
-                  if(data.hometown.name && contains(data.hometown.name, place)){
+                  if(data.hometown && contains(data.hometown.name, place)){
                     nearby = true;
                   }
-                  else if(data.location.name && contains(data.location.name, place)){
+                  else if(data.location && contains(data.location.name, place)){
                     nearby = true;
                   }
                   if(nearby){
