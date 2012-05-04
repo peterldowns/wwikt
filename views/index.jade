@@ -3,11 +3,11 @@
   .searchMain
     h1 Who Will I Know There?
     br
-    form.well.form-inline(name='search', action='/login')
+    form.well.form-inline(id='search', name='search', action='/login')
       label
         h4(style='margin-right: 10px;')
           | I'm looking for friends near
-      input.input-xlarge.search-query(name='place', placeholder='San Francisco, California', style='margin-right: 10px;')
+      input.input-xlarge.search-query(id='place', name='place', placeholder='Enter a city name (e.g., San Francisco)', style='margin-right: 10px;')
       button.btn.btn-primary(type='submit')
         | Find Friends!
     br
@@ -17,41 +17,61 @@
     - else
       li#people
       script
-        var access_token = "#{access_token}";
-        var place = "#{place}";
-        var appId = "#{appId}";
-        
-        console.log("logged in.");
-        console.log(access_token);
-        console.log(place);
-        console.log(appId);
-
-        $('document').ready(function(){
-          $('#place').val(place); // update searched value
-        });
-
-        // Initialize FBJS
-        window.fbAsyncInit = function(){
-          FB.init({
-            appId: appId, // App ID
-            status : true, // check login status
-            cookie : true, // enable cookies
-            xfbml : true // parse XFBML
-          });
-          FB.api('/me', function(resp){
-            alert('Your name is ' + resp.name);
-          });
-        };
-
-        (function(d){
-          var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-          if (d.getElementById(id)){return;}
-          js = d.createElement('script'); js.id = id; js.async = true;
-          js.src = "//connect.facebook.net/en_US/all.js";
-          ref.parentNode.insertBefore(js, ref);
+        $(document).ready(function(){
+          var access_token = "#{access_token}";
+          var place = "#{place}";
+          var appId = "#{appId}";
           
-          // Do some cool stuff
-        }(document));
+          console.log("logged in.");
+          console.log(access_token);
+          console.log(place);
+          console.log(appId);
+          
+          $('#place').val(place); // update searched value
+          alert("hi");
+
+          var contains = function(a, b){
+            return (a.toLowerCase().indexOf(b.toLowerCase()) !== -1);
+          }
+          var auth = '?access_token='+access_token;
+          $.getJSON('https://graph.facebook.com/me'+auth, function(data){
+            var me = data;
+            $.getJSON('https://graph.facebook.com/me/friends'+auth, function(data){
+              var friends = data.data;
+              console.log("Friends");
+              console.log(friends);
+              
+              var nearby_friends = [];
+              
+              alert("Looking through "+friends.length+" friends");
+              _.each(friends, function(friend, i, l){
+                var id = friend.id;
+                console.log("Id, name");
+                var name = friend.name;
+                console.log(id);
+                console.log(name);
+
+                $.getJSON('https://graph.facebook.com/'+id+auth, function(data){
+                  console.log(data);
+                  if(data.hometown.name && contains(data.hometown.name, place)){
+                    nearby_friends.push(friend);
+                    break;
+                  }
+                  if(data.location.name && contains(data.location.name, place)){
+                    nearby_friends.push(friend);
+                    break;
+                  }
+                });
+              });
+              var results = $('li#people');
+              _.each(nearby_friends, function(friend, i, l){
+                console.log(friend);
+                results.append('<li><a href="https://facebook.com/'+friend.id+'">'+friend.name+'</a></li>');
+              }     
+            });
+          });
+
+        });
 
         /*
           var nearby_friends = [];
