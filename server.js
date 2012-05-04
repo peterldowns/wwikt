@@ -6,6 +6,7 @@ var express = require('express'),
     qs = require('querystring'),
     conf = require('./conf');
 var app = module.exports = express.createServer();
+app.debug = true;
 
 // Configuration
 // > NODE_ENV=foo node app.js to run with config 'foo'
@@ -37,7 +38,7 @@ app.configure('production', function(){
 app.get('/', function(req, res){
   // GET index
   res.render('index', {
-    title: app.set('_title'),
+    title: app.set('_title') + '— Error',
     appId: conf.appId || null,
     access_token: req.session.access_token || null,
     place: req.session.place || null

@@ -12,13 +12,22 @@
         | Find Friends!
     br
     div(id="loading")
-      img(src="/img/loading.gif" alt="Loading friends (may take a while)")
+      img(id="loading", src="/img/loading.gif", alt="Loading friends (may take a while)")
       p Searching your facebook graph...
     br
-    - if (!access_token)
-      script
-        console.log("not logged in.");
-    - else
+    script
+      $(document).ready(function(){
+        $('#loading')
+          .hide()
+          .ajaxStart(function(){
+            $('#loading').delay(500).show();
+          })
+          .ajaxStop(function(){
+            $('#loading').delay(500).hide();
+          });
+      });
+
+    - if(access_token)
       ul#people
       script
         var access_token = "#{access_token}";
@@ -28,18 +37,10 @@
         console.log(access_token);
         console.log(place);
         console.log(appId);
-  
+
         $(document).ready(function(){
           $('#place').val(place); // update searched value
           
-          $('#loading')
-            .hide()
-              .ajaxStart(function(){
-                $('#loading').delay(500).show();
-              })
-              .ajaxStop(function(){
-                $('#loading').delay(500).hide();
-              })
             
           // Helper functions
           
