@@ -38,3 +38,5 @@ I'm going to try to make this entire app in like 12 hours. I'm going to keep tra
 TODO: do location finding and similarity matching. I can use graph.facebook.com/id to get basic info, which will include hometown/location when available. That's a city, state / city, country thing. But those not might exist. So I think a good way to do it would be to check for location/hometown *first*, then use graph.facebook.com/id/locations second.
 
 Also, I can do friends of friends, but only if my friends use the app, too. I can add an invite? Send out a "Hey, I'm moving to xxx, and I want to see if I know anyone there."
+
+**5/4 02:10** Couldn't sleep, so I kept hacking. Hooray! Things don't work. Boo! Mostly everything does. Actually, it's pretty cool, it acts as a _super basic_ location search for your friends.
