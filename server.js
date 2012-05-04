@@ -38,7 +38,7 @@ app.get('/', function(req, res){
   // GET index
   res.render('index', {
     title: app.set('_title'),
-    appId: conf.appId,
+    appId: conf.appId || null,
     access_token: req.session.access_token || null,
     place: req.session.place || null
   });
@@ -83,7 +83,10 @@ app.get('/redirect', function(req, res){
 
 app.get('/error', function(req, res){
   res.render('error', {
-    title: app.set('_title') + '— Error'
+    title: app.set('_title') + '— Error',
+    appId: conf.appId || null,
+    access_token: req.session.access_token || null,
+    place: req.session.place || null
   });
 });
 
