@@ -28,8 +28,11 @@
             $('.done_loading').delay(500).show();
           });
       });
-
-    - if(access_token)
+    - if(!access_token)
+      p A simple project to help you find friends when you're moving somewhere totally new.
+      p Going off to college? Need a support network? Log in with your Facebook to find
+      p friends (and friends of friends) near your new home.
+    - else
       ul#people
       script
         var access_token = "#{access_token}";
