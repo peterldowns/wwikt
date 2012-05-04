@@ -34,6 +34,12 @@
             return (a.toLowerCase().indexOf(b.toLowerCase()) !== -1);
           }
           var auth = '?access_token='+access_token;
+          // Totally forgot about no Cross-Site Requests. Damnit.
+          // I'll have to write a little server thingy. Oh, then
+          // I won't need the appId or access_token, so I guess
+          // thats a little benefit? Not sure. Ill expose
+          // something on the server that makes these requests.
+
           $.getJSON('https://graph.facebook.com/me'+auth, function(data){
             var me = data;
             $.getJSON('https://graph.facebook.com/me/friends'+auth, function(data){

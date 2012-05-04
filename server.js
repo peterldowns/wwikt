@@ -87,6 +87,10 @@ app.get('/error', function(req, res){
   });
 });
 
+app.get('/fb/*', function(req, res){
+  console.log(req.params);
+});
+
 app.listen(8080, function(){
   console.log("Loaded with configuration:");
   console.log(conf);
