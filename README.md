@@ -32,3 +32,5 @@ I'm going to try to make this entire app in like 12 hours. I'm going to keep tra
 **5/2 19:03** Got everything working on dotcloud. Tomorrow I'll try to actually build an app. I feel a little bit like I'm writing Python with different syntax right now — hopefully that changes tomorrow! I think I'm just going to use Bootstrap for the layout and make it super, super simple. Might actually rip the design I have on sexpert right now and shove it up. That's a pretty essential search layout.
 
 **5/3 18:36** Well, I didn't really keep a very good log of my progress. But, as of right now I have facebook login working and everything's set up to make the OpenGraph searches. Now I've got to do some place parsing and cool things like that. Woo hoo!
+
+**5/3 20:07** So, sweet, I've got the facebook login actually working and everything. Very cool. But I'm losing steam on finishing the rest of the app tonight, I'm kind of tired and a little bit sick. So maybe I'll do the location matching tomorrow? Or some other day.
