@@ -15,7 +15,7 @@
       script
         console.log("not logged in.");
     - else
-      li#people
+      ul#people
       script
         $(document).ready(function(){
           var access_token = "#{access_token}";
@@ -41,16 +41,14 @@
           var FB = function(path, cb){
             $.getJSON('/fb/'+path, cb);
           }
-          //$.getJSON('https://graph.facebook.com/me'+auth, function(data){
           FB('/me', function(data){
             var me = data;
-            $.getJSON('https://graph.facebook.com/me/friends'+auth, function(data){
+            FB('/me/friends', function(data){
               var friends = data.data;
               console.log("Friends");
               console.log(friends);
               
-              var nearby_friends = [];
-              
+              var people = $('ul#people');
               alert("Looking through "+friends.length+" friends");
               _.each(friends, function(friend, i, l){
                 var id = friend.id;
@@ -58,25 +56,24 @@
                 var name = friend.name;
                 console.log(id);
                 console.log(name);
-
-                $.getJSON('https://graph.facebook.com/'+id+auth, function(data){
+                
+                FB('/'+id, function(data){
                   console.log(data);
+                  var nearby = false;
                   if(data.hometown.name && contains(data.hometown.name, place)){
-                    nearby_friends.push(friend);
+                    nearby = true;
                   }
                   else if(data.location.name && contains(data.location.name, place)){
-                    nearby_friends.push(friend);
+                    nearby = true;
+                  }
+                  if(nearby){
+                    console.log("%s is nearby!", friend.name);
+                    people.append('<li><a href="https://facebook.com/'+friend.id+'">'+friend.name+'</a></li>');
                   }
                 });
               });
-              var results = $('li#people');
-              _.each(nearby_friends, function(friend, i, l){
-                console.log(friend);
-                results.append('<li><a href="https://facebook.com/'+friend.id+'">'+friend.name+'</a></li>');
-              });
             });
           });
-
         });
 
         /*
