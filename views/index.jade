@@ -11,19 +11,22 @@
       button.btn.btn-primary(type='submit')
         | Find Friends!
     br
-    div(id="loading")
-      img(id="loading", src="/img/loading.gif", alt="Loading friends (may take a while)")
-      p Searching your facebook graph...
+    div
+      p(class='loading') Searching your facebook graph...
+      img(class='loading', src="/img/loading.gif", alt="Loading friends (may take a while)")
+      p(class='done_loading') Done.
     br
     script
       $(document).ready(function(){
-        $('#loading')
+        $('.done_loading').hide();
+        $('.loading')
           .hide()
           .ajaxStart(function(){
-            $('#loading').delay(500).show();
+            $('.loading').delay(500).show();
           })
           .ajaxStop(function(){
-            $('#loading').delay(500).hide();
+            $('.loading').delay(500).hide();
+            $('.done_loading').delay(500).show();
           });
       });
 
