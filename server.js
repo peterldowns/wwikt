@@ -38,6 +38,7 @@ app.get('/', function(req, res){
   // GET index
   res.render('index', {
     title: app.set('_title'),
+    appId: conf.appId,
     access_token: req.session.access_token || null,
     place: req.session.place || null
   });
@@ -72,19 +73,11 @@ app.get('/redirect', function(req, res){
       console.log(data);
       req.session.access_token = data.access_token;
       req.session.expires = data.expires
-      res.redirect('/search');
+      res.redirect('/');
     }
     else {
       res.redirect('/error');
     }
-  });
-});
-
-app.get('/search', function(req, res){
-  res.render('index', {
-    title: app.set('_title') + '— Results',
-    access_token: req.session.access_token || null,
-    place: req.session.place || null
   });
 });
 

@@ -1,3 +1,4 @@
+#fb-root
 .container
   .searchMain
     h1 Who Will I Know There?
@@ -6,9 +7,9 @@
       label
         h4(style='margin-right: 10px;')
           | I'm looking for friends near
-      input.input-xlarge.search-query(name='place', placeholder='San Francisco')
+      input.input-xlarge.search-query(name='place', placeholder='San Francisco, California', style='margin-right: 10px;')
       button.btn.btn-primary(type='submit')
-        | Find Friends ⇨
+        | Find Friends!
     br
     - if (!access_token)
       script
@@ -18,8 +19,32 @@
       script
         var access_token = "#{access_token}";
         var place = "#{place}";
+        var appId = "#{appId}";
+        
+        // Initialize FBJS
+        window.fbAsyncInit = function(){
+          FB.init({
+            appId: appId, // App ID
+            status : true, // check login status
+            cookie : true, // enable cookies
+            xfbml : true // parse XFBML
+          });
+        };
+        (function(d){
+          var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+          if (d.getElementById(id)){return;}
+          js = d.createElement('script'); js.id = id; js.async = true;
+          js.src = "//connect.facebook.net/en_US/all.js";
+          ref.parentNode.insertBefore(js, ref);
+        }(document));
+
+        // Do some cool stuff
         $('document').ready(function(){
-          $('#place').text(place);
+          $('#place').val(place); // update searched value
+          FB.api('/me', function(resp){
+            alert('Your name is ' + resp.name);
+          });
+        });
         /*
           var nearby_friends = [];
           var me = get(https://graph.facebook.com/me?access_token=access_token)['data']
@@ -39,3 +64,4 @@
         console.log("logged in.");
         console.log(access_token);
         console.log(place);
+        console.log(appid);

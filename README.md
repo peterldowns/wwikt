@@ -34,3 +34,7 @@ I'm going to try to make this entire app in like 12 hours. I'm going to keep tra
 **5/3 18:36** Well, I didn't really keep a very good log of my progress. But, as of right now I have facebook login working and everything's set up to make the OpenGraph searches. Now I've got to do some place parsing and cool things like that. Woo hoo!
 
 **5/3 20:07** So, sweet, I've got the facebook login actually working and everything. Very cool. But I'm losing steam on finishing the rest of the app tonight, I'm kind of tired and a little bit sick. So maybe I'll do the location matching tomorrow? Or some other day.
+
+TODO: do location finding and similarity matching. I can use graph.facebook.com/id to get basic info, which will include hometown/location when available. That's a city, state / city, country thing. But those not might exist. So I think a good way to do it would be to check for location/hometown *first*, then use graph.facebook.com/id/locations second.
+
+Also, I can do friends of friends, but only if my friends use the app, too. I can add an invite? Send out a "Hey, I'm moving to xxx, and I want to see if I know anyone there."
