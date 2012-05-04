@@ -93,6 +93,10 @@
                 var id = friend.id;
                 var name = friend.name;
                 FB('/'+id, function(friend_info){
+                  FB('/'+id+'locations', function(loc_info){
+                    console.log("Got location info for %s", friend.name);
+                    console.log(loc_info);
+                  }
                   var nearby = false;
                   if(friend_info.hometown && friend_info.hometown.name &&
                      isNearby(friend_info.hometown.name, place)){
