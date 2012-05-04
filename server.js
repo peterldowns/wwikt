@@ -88,7 +88,20 @@ app.get('/error', function(req, res){
 });
 
 app.get('/fb/*', function(req, res){
-  console.log(req.params);
+  var graph_url = 'https://graph.facebook.com/';
+  var url = graph_url + req.params[0] + '?access_token=' + req.session.access_token;
+  console.log(url);
+  request.get({url:url}, function(e, r, body){
+    if (!e && r.statusCode == 200){
+      var data = qs.parse(body);
+      console.log(data);
+      console.log(typeof data);
+      res.send(body);
+    }
+    else{
+      res.send("Error.");
+    }
+  });
 });
 
 app.listen(8080, function(){
