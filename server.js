@@ -37,14 +37,16 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   // GET index
-  req.session.place = req.query.place;
-  res.render('index', {
+  console.log(req.query.place);
+  req.session.place = req.query.place || req.session.place;
+  data = {
     title: app.set('_title') + '— Error',
     appId: conf.appId || null,
     access_token: req.session.access_token || null,
     place: req.session.place || null
-  });
-  res.redirect('/');
+  };
+  console.log(data);
+  res.render('index', data);
 });
 
 app.get('/login', function(req, res){
