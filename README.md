@@ -40,3 +40,5 @@ TODO: do location finding and similarity matching. I can use graph.facebook.com/
 Also, I can do friends of friends, but only if my friends use the app, too. I can add an invite? Send out a "Hey, I'm moving to xxx, and I want to see if I know anyone there."
 
 **5/4 02:10** Couldn't sleep, so I kept hacking. Hooray! Things don't work. Boo! Mostly everything does. Actually, it's pretty cool, it acts as a _super basic_ location search for your friends.
+
+**5/4 12:13** Finished up a lot of pretty CSS stuff, have a basic loader. Things are pretty cool. I think I should only try to look at friends, but try to use all of their location objects, too. Then, have some sort of FB interaction where you can be prompted to write on their wall "Hey, I'm moving to __location__, do you know anyone there that I might want to be friends with?" An option I could improve this with would be when I look at location objects, look for other users associated with them, then add this to the message: "I see you were near __location__ with __personA__, __personB__, __personC__, do you think I'd be interested in meeting any of them?". That would be totally achievable and easy to do.
