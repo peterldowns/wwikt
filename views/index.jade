@@ -43,4 +43,8 @@
         | friends (and friends of friends) near your new home.
     - else
       ul#people
+      script
+        var access_token = "#{access_token}";
+        var place = "#{place}";
+        var appId = "#{appId}";
       script(src='/js/index.js')

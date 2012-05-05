@@ -1,6 +1,3 @@
-var access_token = "#{access_token}";
-var place = "#{place}";
-var appId = "#{appId}";
 console.log("logged in.");
 console.log(access_token);
 console.log(place);
