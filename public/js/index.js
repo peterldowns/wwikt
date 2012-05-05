@@ -71,7 +71,7 @@ $(document).ready(function(){
                 if (!event_loc){
                   return false;
                 }
-                var loc_string = [event_loc.name, event_loc.city, event_loc.state, event_loc.country].join(', ');
+                var loc_string = [event_loc.name, event_loc.location.city, event_loc.location.state, event_loc.location.country].join(', ');
                 loc_string = String(loc_string);
                 console.log(loc_string);
                 if(isNearby(loc_string, place)){
