@@ -7,14 +7,14 @@
       form.form-search.form-vertical(id='search', name='search', action='/login')
         label
           h4 I'm moving to
-        input.input-xxlarge.search-query(id='place', name='place', placeholder='"San Francisco" or "California" or "San Francisco, California"')
+        input.input-xxlarge.search-query(id='place', name='place', placeholder='"San Francisco" or "San Francisco, CA"')
         button.btn.btn-primary(type='submit')
           | Find Friends!
     - else
       form.form-search.form-vertical(id='search', name='search', action='/')
         label
           h4 I'm moving to
-          input.input-xxlarge.search-query(id='place', name='place', placeholder='"San Francisco" or "California" or "San Francisco, California"')
+          input.input-xxlarge.search-query(id='place', name='place', placeholder='"San Francisco" or "San Francisco, CA"')
         button.btn.btn-primary(type='submit')
           | Find Friends!
     
