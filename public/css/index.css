@@ -1,0 +1,41 @@
+html { 
+  background: url(/img/map.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+input {
+  text-align: center;
+}
+button {
+  margin: 10px;
+}
+body {
+  background: transparent;
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.container {
+  width: 600px;
+  padding: 20px;
+}
+.searchMain {
+  min-width: 400px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  background: #FFFFFF;
+  text-align: center;
+  padding: 10px;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+.person {
+  padding: 5px;
+}
