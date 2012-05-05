@@ -65,9 +65,12 @@ $(document).ready(function(){
             FB('/'+id+'/locations', function(loc_info){
               console.log("LOCATION INFO:");
               console.log(loc_info);
-              loc_info.data.some(function(event){
-                friend_info.from = event.from;
-                var event_loc = event.place;
+              loc_info.data.some(function(_event){
+                friend_info.from = _event.from;
+                var event_loc = _event.place;
+                if (!event_loc){
+                  return false;
+                }
                 var loc_string = [event_loc.name, event_loc.city, event_loc.state, event_loc.country].join(', ');
                 loc_string = String(loc_string);
                 console.log(loc_string);
