@@ -39,7 +39,7 @@ $(document).ready(function(){
     var me = data;
     FB('/me/friends', function(data){
       var friends = data.data;
-      $('.loading').prepend("<p>Searching your "+friends.length+" friends...");
+      $('.loading').append("<p>Searching your "+friends.length+" friends...");
       console.log("Looking through "+friends.length+" friends");
       
       var people = $('ul#people');
@@ -72,7 +72,7 @@ $(document).ready(function(){
                 var loc_string = [event_loc.name, event_loc.location.city, event_loc.location.state, event_loc.location.country].join(', ');
                 loc_string = String(loc_string);
                 if(isNearby(loc_string, place)){
-                  console.log('%s is nearby %s!', friend_info.location.name, loc_string);
+                  console.log('%s is nearby %s!', place, loc_string);
                   addPersonTo('ul#people', friend_info);
                   return true;
                 }
