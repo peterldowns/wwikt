@@ -21,10 +21,12 @@ $(document).ready(function(){
 
   var isNearby = function(place, test){
     var cleaned_place = _.map($.trim, place.split(','));
+    console.log(cleaned_place);
     var pcity = cleaned_place[0];
     var pstate = cleaned_place[1];
 
     var cleaned_test = _.map($.trim, test.split(','));
+    console.log(cleaned_test);
     var tcity = cleaned_test[0];
     var tstate = cleaned_test[1];
 
