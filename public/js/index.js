@@ -28,11 +28,11 @@ $(document).ready(function(){
     var tcity = cleaned_test[0];
     var tstate = cleaned_test[1];
 
-    console.log("Place = '%s'", place || "");
-    console.log("City = '%s', State = '%s'", city || "", state || "");
+    console.log("Place = '%s'", place);
+    console.log("City = '%s', State = '%s'", tcity || "", tstate || "");
 
     if(!tstate){
-      return isSubstring(tcity, place);
+      return isSubstring(place, tcity);
     }
     if(isSubstring(pcity, tcity)){
       if(pstate){
