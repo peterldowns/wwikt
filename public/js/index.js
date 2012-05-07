@@ -39,7 +39,7 @@ $(document).ready(function(){
     var me = data;
     FB('/me/friends', function(data){
       var friends = data.data;
-      $('.loading').append("<p>Searching your "+friends.length+" friends...");
+      $('.loading').append("<br><p>Searching your "+friends.length+" friends...");
       console.log("Looking through "+friends.length+" friends");
       
       var people = $('ul#people');

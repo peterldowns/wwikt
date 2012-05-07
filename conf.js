@@ -5,6 +5,7 @@ module.exports = {
   perms: [
     'friends_location',
     'friends_hometown',
-    'friends_status'
+    'friends_status',
+    'friends_checkins'
   ]
 };
