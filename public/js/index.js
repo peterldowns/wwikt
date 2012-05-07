@@ -52,7 +52,7 @@ $(document).ready(function(){
                 '<a href="https://facebook.com/'+id+'">' +
                   '<div class="person">' +
                     '<img src="https://graph.facebook.com/'+id+'/picture?type=normal"/>' +
-                    '<h3>' + friend.name + '</h3>' +
+                    '<h4>' + friend.name + '</h4>' +
                   '</div>' +
                 '</a>' +
               '</li>';
