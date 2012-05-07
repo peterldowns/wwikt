@@ -8,17 +8,35 @@ $(document).ready(function(){
   
     
   // Helper functions
-  
-  var isNearby = function(a, b){
-    console.log("Checking to see if '%s' is a substring of '%s'", b, a);
-    return (a.toLowerCase().indexOf(b.toLowerCase()) !== -1);
-  }
-
   var makeState = function(abbrev){
     var states = {'AK': 'Alaska', 'AL' : 'Alabama', 'AR' : 'Arkansas', 'AZ' : 'Arizona', 'CA' : 'California', 'CO' : 'Colorado', 'CT' : 'Connecticut', 'DE' : 'Delaware', 'DC' : 'District of Columbia', 'FL' : 'Florida', 'GA' : 'Georgia', 'HI' : 'Hawaii', 'IA' : 'Iowa', 'ID' : 'Idaho', 'IL' : 'Illinois', 'IN' : 'Indiana', 'KS' : 'Kansas', 'KY' : 'Kentucky', 'LA' : 'Louisiana', 'MA' : 'Massachusetts', 'MD' : 'Maryland', 'ME' : 'Maine', 'MI' : 'Michigan', 'MN' : 'Minnesota', 'MS' : 'Mississippi', 'MO' : 'Missouri', 'MT' : 'Montana', 'NC' : 'North Carolina', 'ND' : 'North Dakota', 'NE' : 'Nebraska', 'NH' : 'New Hampshire', 'NJ' : 'New Jersey', 'NM' : 'New Mexico', 'NV' : 'Nevada', 'NY' : 'New York', 'OH' : 'Ohio', 'OK' : 'Oklahoma', 'OR' : 'Oregon', 'PA' : 'Pennsylvania', 'RI' : 'Rhode Island', 'SC' : 'South Carolina', 'SD' : 'South Dakota', 'TN' : 'Tennessee', 'TX' : 'Texas', 'UT' : 'Utah', 'VA' : 'Virginia', 'VT' : 'Vermont', 'WA' : 'Washington', 'WI' : 'Wisconsin', 'WV' : 'West Virginia', 'WY' : 'Wyoming'};
     var clean = $.trim(abbrev);
     return clean in states ? states[clean] : abbrev;
   }
+
+  var isSubstring = function(a, b){
+    console.log("Checking to see if '%s' is a substring of '%s'", b, a);
+    return (a.toLowerCase().indexOf(b.toLowerCase()) !== -1);
+  }
+
+  var isNearby = function(place, test){
+    var cleaned = _.map($.trim, test.split(','));
+    var city = cleaned[0];
+    var state = cleaned[1];
+
+    console.log("Place = '%s'", place);
+    console.log("City = '%s', State = '%s'", city, state);
+
+    if(isSubstring(place, city)){
+      return true;
+    }
+    if(state){
+      state = makeState(state);
+      return isSubstring(place, state);
+    }
+    return false;
+  }
+
 
   var makePerson = function(friend){
     var id = friend.username || friend.id;
