@@ -7,6 +7,7 @@
       form.form-search.form-vertical(id='search', name='search', action='/login')
         label
           h4 I'm moving to
+        br
         input.input-xxlarge.search-query(id='place', name='place', placeholder='"San Francisco" or "San Francisco, CA"')
         button.btn.btn-primary(type='submit')
           | Find Friends!
@@ -14,9 +15,11 @@
       form.form-search.form-vertical(id='search', name='search', action='/')
         label
           h4 I'm moving to
+          br
           input.input-xxlarge.search-query(id='place', name='place', placeholder='"San Francisco" or "San Francisco, CA"')
         button.btn.btn-primary(type='submit')
           | Find Friends!
+        br
         br
         a(href="https://facebook.com/logout.php?next=http://wwikt-peterldowns.dotcloud.com/logout&access_token=#{access_token}") (or logout)
     
