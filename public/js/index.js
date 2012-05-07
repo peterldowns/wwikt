@@ -102,7 +102,7 @@ $(document).ready(function(){
                   return false;
                 }
                 var state = makeState(event_loc.location.state);
-                var loc_string = [event_loc.name, event_loc.location.city, state, event_loc.location.country].join(', ');
+                var loc_string = [event_loc.name, event_loc.location.city, state, event_loc.location.country].join(' ');
                 loc_string = String(loc_string);
                 if(isNearby(loc_string, place)){
                   console.log('%s is nearby %s!', place, loc_string);
