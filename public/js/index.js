@@ -57,7 +57,7 @@ $(document).ready(function(){
             nearby = true;
           }
           if(nearby){
-            addPersonTo('ul#people', friend_info);
+            addPersonTo('ul#lived', friend_info);
           }
           else{
             console.log("Trying to grab %s's location info", friend_info.name);
@@ -73,7 +73,7 @@ $(document).ready(function(){
                 loc_string = String(loc_string);
                 if(isNearby(loc_string, place)){
                   console.log('%s is nearby %s!', place, loc_string);
-                  addPersonTo('ul#people', friend_info);
+                  addPersonTo('ul#been', friend_info);
                   return true;
                 }
               });

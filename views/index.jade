@@ -45,7 +45,10 @@
         | Going off to college? Need a support network? Log in with your Facebook to find
         | friends (and friends of friends) near your new home.
     - else
-      ul#people
+      h3 Friends who are living or have lived near #{place}
+      ul#lived
+      h3 Friends who have been to #{place}
+      ul#been
       script
         var access_token = "#{access_token}";
         var place = "#{place}";
