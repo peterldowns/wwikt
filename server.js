@@ -37,7 +37,6 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   // GET index
-  console.log(req.query.place);
   req.session.place = req.query.place || req.session.place;
   data = {
     title: app.set('_title') + '— Error',
@@ -110,6 +109,12 @@ app.get('/fb/*', function(req, res){
       res.send("Error.");
     }
   });
+});
+
+app.get('/logout', function(req, res){
+  req.session.access_token = null;
+  req.session.expires = null;
+  res.redirect('/');
 });
 
 app.listen(8080, function(){
