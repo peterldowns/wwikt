@@ -20,19 +20,25 @@ $(document).ready(function(){
   }
 
   var isNearby = function(place, test){
-    var cleaned = _.map($.trim, test.split(','));
-    var city = cleaned[0];
-    var state = cleaned[1];
+    var cleaned_place = _.map($.trim, place.split(','));
+    var pcity = cleaned_place[0];
+    var pstate = cleaned_place[1];
 
-    console.log("Place = '%s'", place);
-    console.log("City = '%s', State = '%s'", city, state);
+    var cleaned_test = _.map($.trim, test.split(','));
+    var tcity = cleaned_test[0];
+    var tstate = cleaned_test[1];
 
-    if(isSubstring(place, city)){
-      return true;
+    console.log("Place = '%s'", place || "");
+    console.log("City = '%s', State = '%s'", city || "", state || "");
+
+    if(!tstate){
+      return isSubstring(tcity, place);
     }
-    if(state){
-      state = makeState(state);
-      return isSubstring(place, state);
+    if(isSubstring(pcity, tcity)){
+      if(pstate){
+        return isSubstring(pstate, tstate);
+      }
+      return true;
     }
     return false;
   }
