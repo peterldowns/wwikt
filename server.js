@@ -39,7 +39,7 @@ app.get('/', function(req, res){
   // GET index
   req.session.place = req.query.place || req.session.place;
   data = {
-    title: app.set('_title') + '— Error',
+    title: app.set('_title'),
     appId: conf.appId || null,
     access_token: req.session.access_token || null,
     place: req.session.place || null
