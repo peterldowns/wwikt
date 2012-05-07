@@ -14,6 +14,11 @@ $(document).ready(function(){
     return (a.toLowerCase().indexOf(b.toLowerCase()) !== -1);
   }
 
+  var makeState = function(abbrev){
+    var states = {'AK': 'Alaska', 'AL' : 'Alabama', 'AR' : 'Arkansas', 'AZ' : 'Arizona', 'CA' : 'California', 'CO' : 'Colorado', 'CT' : 'Connecticut', 'DE' : 'Delaware', 'DC' : 'District of Columbia', 'FL' : 'Florida', 'GA' : 'Georgia', 'HI' : 'Hawaii', 'IA' : 'Iowa', 'ID' : 'Idaho', 'IL' : 'Illinois', 'IN' : 'Indiana', 'KS' : 'Kansas', 'KY' : 'Kentucky', 'LA' : 'Louisiana', 'MA' : 'Massachusetts', 'MD' : 'Maryland', 'ME' : 'Maine', 'MI' : 'Michigan', 'MN' : 'Minnesota', 'MS' : 'Mississippi', 'MO' : 'Missouri', 'MT' : 'Montana', 'NC' : 'North Carolina', 'ND' : 'North Dakota', 'NE' : 'Nebraska', 'NH' : 'New Hampshire', 'NJ' : 'New Jersey', 'NM' : 'New Mexico', 'NV' : 'Nevada', 'NY' : 'New York', 'OH' : 'Ohio', 'OK' : 'Oklahoma', 'OR' : 'Oregon', 'PA' : 'Pennsylvania', 'RI' : 'Rhode Island', 'SC' : 'South Carolina', 'SD' : 'South Dakota', 'TN' : 'Tennessee', 'TX' : 'Texas', 'UT' : 'Utah', 'VA' : 'Virginia', 'VT' : 'Vermont', 'WA' : 'Washington', 'WI' : 'Wisconsin', 'WV' : 'West Virginia', 'WY' : 'Wyoming'};
+    return states.fetch($.trim(abbrev), abbrev);
+  }
+
   var makePerson = function(friend){
     var id = friend.username || friend.id;
     var res = '<li>' +
@@ -69,7 +74,8 @@ $(document).ready(function(){
                   console.log("No location info for %s", friend_info.name);
                   return false;
                 }
-                var loc_string = [event_loc.name, event_loc.location.city, event_loc.location.state, event_loc.location.country].join(', ');
+                var state = makeState(event_loc.location.state);
+                var loc_string = [event_loc.name, event_loc.location.city, state, event_loc.location.country].join(', ');
                 loc_string = String(loc_string);
                 if(isNearby(loc_string, place)){
                   console.log('%s is nearby %s!', place, loc_string);
