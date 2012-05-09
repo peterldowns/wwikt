@@ -106,7 +106,6 @@ $(document).ready(function(){
                 var event_loc = _event.place;
                 if (!event_loc){
                   console.log("No location info for %s", friend_info.name);
-                  incrementDone();
                   return false;
                 }
                 var state = makeState(event_loc.location.state);
@@ -119,10 +118,10 @@ $(document).ready(function(){
                   return true;
                 }
                 else{
-                  incrementDone();
                   return false;
                 }
               });
+              incrementDone();
             });
           }
         });
