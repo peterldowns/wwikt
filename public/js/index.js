@@ -67,6 +67,11 @@ $(document).ready(function(){
   }
 
   // Perform the search
+  var numDone = 0;
+  var incrementDone = function(){
+    numDone += 1;
+    $('#numDone').text("Processed "+str(numDone)+" friends.");
+  }
   FB('/me', function(data){
     var me = data;
     FB('/me/friends', function(data){
@@ -83,10 +88,13 @@ $(document).ready(function(){
           if(friend_info.hometown && friend_info.hometown.name &&
              isNearby(friend_info.hometown.name, place)){
             addPersonTo('#past', friend_info);
+            incrementDone();
+
           }
           else if(friend_info.location && friend_info.location.name &&
                   isNearby(friend_info.location.name, place)){
             addPersonTo('#current', friend_info);
+            incrementDone();
           }
           else{
             console.log("Trying to grab %s's location info", friend_info.name);
@@ -96,6 +104,7 @@ $(document).ready(function(){
                 var event_loc = _event.place;
                 if (!event_loc){
                   console.log("No location info for %s", friend_info.name);
+                  incrementDone();
                   return false;
                 }
                 var state = makeState(event_loc.location.state);
@@ -104,6 +113,7 @@ $(document).ready(function(){
                 if(isNearby(loc_string, place)){
                   console.log('%s is nearby %s!', place, loc_string);
                   addPersonTo('#visited', friend_info);
+                  incrementDone();
                   return true;
                 }
               });
