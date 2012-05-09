@@ -21,11 +21,11 @@
           | Find Friends!
         br
         br
-        a(href="https://facebook.com/logout.php?next=http://wwikt-peterldowns.dotcloud.com/logout&access_token=#{access_token}") (or logout)
+        a(href='https://facebook.com/logout.php?next=http://wwikt-peterldowns.dotcloud.com/logout&access_token=#{access_token}') (or logout)
     
     br
     div(class='loading')
-      img(src="/img/loading.gif", alt="Loading friends (may take a while)")
+      img(src='/img/loading.gif', alt='Loading friends (may take a while)')
     div(class='done_loading')
       p Done.
     br
@@ -48,6 +48,30 @@
         | Going off to college? Need a support network? Log in with your Facebook to find
         | friends (and friends of friends) near your new home.
     - else
+      ul(class='nav nav-tabs', id='resultsTabs')
+        li
+          a(data-target='#past')
+            | Lived in #{place}
+        li(class='active')
+          a(data-target='#current')
+            | Living in #{place}
+        li
+          a(data-target='#visited')
+            | Visited #{place}
+
+      div(class='tab-content')
+        div(class='tab-pane' id='past')
+        div(class='tab-pane active' id='current')
+        div(class='tab-pane' id='visited')
+      script
+        $(function(){
+          $('#resultsTabs a:last').tab('show');
+        })
+        $('#resultsTabs a').click(function(e){
+          e.preventDefault();
+          $(this).tab('show');
+        });
+
       h3 Friends who are living or have lived in #{place}
       ul#lived
       h3 Friends who have been to #{place}

@@ -82,14 +82,11 @@ $(document).ready(function(){
           var nearby = false;
           if(friend_info.hometown && friend_info.hometown.name &&
              isNearby(friend_info.hometown.name, place)){
-            nearby = true;
+            addPersonTo('#lived', friend_info);
           }
           else if(friend_info.location && friend_info.location.name &&
                   isNearby(friend_info.location.name, place)){
-            nearby = true;
-          }
-          if(nearby){
-            addPersonTo('ul#lived', friend_info);
+            addPersonTo('#living', friend_info);
           }
           else{
             console.log("Trying to grab %s's location info", friend_info.name);
@@ -106,7 +103,7 @@ $(document).ready(function(){
                 loc_string = String(loc_string);
                 if(isNearby(loc_string, place)){
                   console.log('%s is nearby %s!', place, loc_string);
-                  addPersonTo('ul#been', friend_info);
+                  addPersonTo('#visited', friend_info);
                   return true;
                 }
               });
