@@ -78,6 +78,9 @@ $(document).ready(function(){
       var friends = data.data;
       $('.loading').append("<br><p>Searching your "+friends.length+" friends...");
       $('#progressKnob').attr('data-width', friends.length);
+      $('#progressKnob').attr('value', 0);
+      console.log($('#progressKnob').attr('data-width'));
+      console.log($('#progressKnob').attr('value'));
 
       console.log("Looking through "+friends.length+" friends");
       

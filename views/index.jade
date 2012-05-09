@@ -25,7 +25,7 @@
     
     br
     div(class='loading')
-      input(class='knob', id='progressKnob')
+      input(class='knob', data-readOnly=true, id='progressKnob')
     div(class='done_loading')
       p Done.
     br
@@ -48,10 +48,10 @@
         | Going off to college? Need a support network? Log in with your Facebook to find
         | friends (and friends of friends) near your new home.
     - else
-      ul(class='nav-pills', id='resultsTabs')
+      ul(class='nav nav-tabs', id='resultsTabs')
         li
           a(data-target='#past')
-            | Lived in #{place}
+            | From #{place}
         li(class='active')
           a(data-target='#current')
             | Living in #{place}
