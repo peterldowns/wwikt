@@ -70,7 +70,7 @@ $(document).ready(function(){
   var numDone = 0;
   var incrementDone = function(){
     numDone += 1;
-    $('#numDone').text("Processed "+str(numDone)+" friends.");
+    $('#numDone').text("Processed "+String(numDone)+" friends.");
   }
   FB('/me', function(data){
     var me = data;
