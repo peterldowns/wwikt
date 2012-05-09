@@ -71,7 +71,7 @@ $(document).ready(function(){
   var numFriends = 0;
   var incrementDone = function(){
     numDone += 1;
-    $('#progressPercent').width(String((numDone*100)/(numFriends+1))+"%");
+    $('#progressPercent').width(String((numDone*100)/(numFriends))+"%");
   }
   FB('/me', function(data){
     var me = data;

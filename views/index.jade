@@ -37,12 +37,10 @@ script(src='/js/index.js')
         | Going off to college? Need a support network? Log in with your Facebook to find
         | friends (and friends of friends) near your new home.
     - else
-      br
-      div(class='loading')
-        div(class='progress progress-striped active')
+      div(class='progress loading progress-striped active')
           div(class='bar', style='width: 0%;', id='progressPercent')
       div(class='done_loading')
-        p Done.
+        p Done!
 
       ul(class='nav nav-tabs', id='resultsTabs')
         li
@@ -69,7 +67,6 @@ script(src='/js/index.js')
             $('.loading').delay(500).show();
           })
           .ajaxStop(function(){
-            $('.loading').delay(500).hide();
             $('.done_loading').delay(500).show();
           });
 
