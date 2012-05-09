@@ -70,6 +70,7 @@ $(document).ready(function(){
   var numDone = 0;
   var incrementDone = function(){
     numDone += 1;
+    $('#progressKnob').attr('value', numDone);
     $('#numDone').text("Processed "+String(numDone)+" friends.");
   }
   FB('/me', function(data){
@@ -77,6 +78,8 @@ $(document).ready(function(){
     FB('/me/friends', function(data){
       var friends = data.data;
       $('.loading').append("<br><p>Searching your "+friends.length+" friends...");
+      $('#progressKnob').attr('data-width', friends.length);
+
       console.log("Looking through "+friends.length+" friends");
       
       var people = $('ul#people');
@@ -84,17 +87,17 @@ $(document).ready(function(){
         var id = friend.id;
         var name = friend.name;
         FB('/'+id, function(friend_info){
-          var nearby = false;
           if(friend_info.hometown && friend_info.hometown.name &&
              isNearby(friend_info.hometown.name, place)){
             addPersonTo('#past', friend_info);
             incrementDone();
-
+            return true;
           }
           else if(friend_info.location && friend_info.location.name &&
                   isNearby(friend_info.location.name, place)){
             addPersonTo('#current', friend_info);
             incrementDone();
+            return true;
           }
           else{
             console.log("Trying to grab %s's location info", friend_info.name);
@@ -115,6 +118,10 @@ $(document).ready(function(){
                   addPersonTo('#visited', friend_info);
                   incrementDone();
                   return true;
+                }
+                else{
+                  incrementDone();
+                  return false;
                 }
               });
             });
