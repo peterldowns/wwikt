@@ -68,21 +68,18 @@ $(document).ready(function(){
 
   // Perform the search
   var numDone = 0;
+  var numFriends = 0;
   var incrementDone = function(){
     numDone += 1;
-    $('#progressKnob').attr('value', numDone);
+    $('#progressPercent').width(String((numDone*100)/(numFriends+1))+"%");
   }
   FB('/me', function(data){
     var me = data;
     FB('/me/friends', function(data){
       var friends = data.data;
+      numFriends = friends.length
       $('.loading').append("<br><p>Searching your "+friends.length+" friends...");
-      $('#progressKnob').attr('data-width', friends.length);
-      $('#progressKnob').attr('value', 0);
-      console.log($('#progressKnob').attr('data-width'));
-      console.log($('#progressKnob').attr('value'));
-
-      console.log("Looking through "+friends.length+" friends");
+      console.log("Looking through "+numFriends+" friends");
       
       var people = $('ul#people');
       _.each(friends, function(friend, i, l){
