@@ -82,11 +82,11 @@ $(document).ready(function(){
           var nearby = false;
           if(friend_info.hometown && friend_info.hometown.name &&
              isNearby(friend_info.hometown.name, place)){
-            addPersonTo('#lived', friend_info);
+            addPersonTo('#past', friend_info);
           }
           else if(friend_info.location && friend_info.location.name &&
                   isNearby(friend_info.location.name, place)){
-            addPersonTo('#living', friend_info);
+            addPersonTo('#current', friend_info);
           }
           else{
             console.log("Trying to grab %s's location info", friend_info.name);
