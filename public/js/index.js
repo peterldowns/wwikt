@@ -71,7 +71,6 @@ $(document).ready(function(){
   var incrementDone = function(){
     numDone += 1;
     $('#progressKnob').attr('value', numDone);
-    $('#numDone').text("Processed "+String(numDone)+" friends.");
   }
   FB('/me', function(data){
     var me = data;

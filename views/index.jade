@@ -25,9 +25,7 @@
     
     br
     div(class='loading')
-      img(src='/img/loading.gif', alt='Loading friends (may take a while)')
       input(class='knob', id='progressKnob')
-      p(id='numDone')
     div(class='done_loading')
       p Done.
     br
@@ -50,7 +48,7 @@
         | Going off to college? Need a support network? Log in with your Facebook to find
         | friends (and friends of friends) near your new home.
     - else
-      ul(class='nav nav-tabs', id='resultsTabs')
+      ul(class='nav-pills', id='resultsTabs')
         li
           a(data-target='#past')
             | Lived in #{place}
@@ -80,5 +78,8 @@
 
         // Show default tab
         $('#current').tab('show');
+
+        // Make knobs look like knobs
+        $('.knob').knob();
 
       script(src='/js/index.js')
