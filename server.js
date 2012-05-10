@@ -37,7 +37,8 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   // GET index
-  req.session.place = req.query.place || req.session.place;
+  console.log(req.query);
+  req.session.place = req.query.place || null; // reset session?
   data = {
     title: app.set('_title'),
     appId: conf.appId || null,
