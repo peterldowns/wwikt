@@ -37,10 +37,11 @@ script(src='/js/index.js')
         | Going off to college? Need a support network? Log in with your Facebook to find
         | friends (and friends of friends) near your new home.
     - if(!place)
-      div(class='alert alert-error')
-        button(class='close', data-dismiss='alert') x
-        strong Woops!
-        p Please type something in that looks like a place, e.g., Philadelphia, PA
+      p
+        | Type in a location! The search bar should give you some good examples, but you may
+        | also try things like "San Francisco, California" or "Leipzig, Germany" or "France"
+        | or "Washington D.C.". Really, anything city, state, or country, or combination of
+        | city and state or country.
     - else
       div(class='progress loading progress-striped active')
           div(class='bar', style='width: 0%;', id='progressPercent')
