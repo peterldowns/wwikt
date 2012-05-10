@@ -44,13 +44,13 @@ script(src='/js/index.js')
 
       ul(class='nav nav-tabs', id='resultsTabs')
         li
-          a(data-target='#past')
+          a(data-target='#past', id='pastControl')
             | From #{place}
         li(class='active')
-          a(data-target='#current')
+          a(data-target='#current', id='currentControl')
             | Living in #{place}
         li
-          a(data-target='#visited')
+          a(data-target='#visited', id='visitedControl')
             | Visited #{place}
 
       div(class='tab-content')

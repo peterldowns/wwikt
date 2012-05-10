@@ -40,10 +40,10 @@ var numDone = {
 }
 var numFriends = 0;
 var updateProgress = function(){
-  $('#progressPercent').width(String(20+(numDone*80)/(numFriends))+"%");
-  $('#past').text('From '+place+' ('+numDone.past+')');
-  $('#current').text('Living in '+place+' ('+numDone.current+')');
-  $('#visited').text('Visited '+place+' ('+numDone.visited+')');
+  $('#progressPercent').width(String(20+(numDone.total*80)/(numFriends))+"%");
+  $('#pastControl').text('From '+place+' ('+numDone.past+')');
+  $('#currentControl').text('Living in '+place+' ('+numDone.current+')');
+  $('#visitedControl').text('Visited '+place+' ('+numDone.visited+')');
 }
 
 var makePerson = function(friend){
