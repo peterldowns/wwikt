@@ -40,7 +40,7 @@ var numDone = {
 }
 var numFriends = 0;
 var updateProgress = function(){
-  console.log("Updating progress');
+  console.log("Updating progress");
   console.log(numDone);
   $('#progressPercent').width(String(20+(numDone.total*80)/(numFriends))+"%");
   $('#pastControl').text('From '+place+' ('+numDone.past+')');
