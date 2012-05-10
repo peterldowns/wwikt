@@ -39,3 +39,10 @@ li {
 .person {
   padding: 5px;
 }
+.nav-tabs > li, .nav-pills > li {
+  float: none;
+  display: inline-block;
+  /* IE 7 fixes */
+  *display: inline;
+  zoom: 1;
+}
