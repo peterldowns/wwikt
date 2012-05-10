@@ -38,13 +38,14 @@ app.configure('production', function(){
 app.get('/', function(req, res){
   // GET index
   console.log(req.query);
-  req.session.place = req.query.place;
+  req.session.place = req.query.place || req.session.place;
   data = {
     title: app.set('_title'),
     appId: conf.appId || null,
     access_token: req.session.access_token || null,
     place: req.session.place || null
   };
+  req.session.place = null; // reset session
   console.log(data);
   res.render('index', data);
 });
