@@ -42,7 +42,9 @@ var numFriends = 1;
 var updateProgress = function(){
   console.log("Updating progress");
   console.log(numDone);
-  $('#progressPercent').width(String(20+(numDone.total*80)/(numFriends))+"%");
+  var percent = String(20+(numDone.total*80)/(numFriends))+"%";
+  $('#progressPercent').width(percent);
+  $('#progressPercent').text(percent);
   $('#pastControl').text('From '+place+' ('+numDone.past+')');
   $('#currentControl').text('Living in '+place+' ('+numDone.current+')');
   $('#visitedControl').text('Visited '+place+' ('+numDone.visited+')');
