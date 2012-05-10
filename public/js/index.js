@@ -40,6 +40,8 @@ var numDone = {
 }
 var numFriends = 0;
 var updateProgress = function(){
+  console.log("Updating progress');
+  console.log(numDone);
   $('#progressPercent').width(String(20+(numDone.total*80)/(numFriends))+"%");
   $('#pastControl').text('From '+place+' ('+numDone.past+')');
   $('#currentControl').text('Living in '+place+' ('+numDone.current+')');
@@ -121,6 +123,7 @@ $(document).ready(function(){
                   return false;
                 }
               });
+              numDone.total += 1;
               updateProgress();
             });
           }
