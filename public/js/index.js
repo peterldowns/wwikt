@@ -38,7 +38,7 @@ var numDone = {
   current: 0,
   visited: 0
 }
-var numFriends = 0;
+var numFriends = 1;
 var updateProgress = function(){
   console.log("Updating progress");
   console.log(numDone);
