@@ -42,9 +42,9 @@ var numFriends = 1;
 var updateProgress = function(){
   console.log("Updating progress");
   console.log(numDone);
-  var percent = String(10+(numDone.total*90)/(numFriends))+"%";
+  var percent = String(20+(numDone.total*80)/(numFriends))+"%";
   $('#progressPercent').width(percent);
-  $('#progressPercent').text(String(numDone.total)+" / "+String(numFriends));
+  $('#progressPercent').text('Checked '+String(numDone.total)+" / "+String(numFriends));
   $('#pastControl').text('From '+place+' ('+numDone.past+')');
   $('#currentControl').text('Living in '+place+' ('+numDone.current+')');
   $('#visitedControl').text('Visited '+place+' ('+numDone.visited+')');
@@ -84,6 +84,7 @@ var FB = function(path, cb){
 $(document).ready(function(){
   $('#place').val(place); // update searched value
   updateProgress(); // set up the progress bar
+  $('#progressPercent').text('Finding friends...');
   // Perform the search
   FB('/me', function(data){
     var me = data;
